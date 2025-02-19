@@ -13,20 +13,24 @@ import lombok.NoArgsConstructor;
 public class Address {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id")
     private Long id;
 
-    @Column(nullable = false, length = 100)
+    @Column(name = "street")
     private String street;
 
-    @Column(nullable = false)
-    private int no;
-
-    @Column(nullable = false, length = 30)
+    @Column(name = "city")
     private String city;
 
-    @Column(nullable = false, length = 30)
+    @Column(name = "no")
+    private int no;
+
+    @Column(name = "country")
     private String country;
 
-    @Column
+    @Column(name = "description")
     private String description;
+
+    @OneToOne(cascade = {CascadeType.DETACH, CascadeType.MERGE, CascadeType.PERSIST, CascadeType.REFRESH})
+    private Customer customer;
 }

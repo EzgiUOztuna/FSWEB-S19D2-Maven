@@ -3,9 +3,8 @@ import com.workintech.s18d4.entity.Customer;
 import java.util.List;
 
 public interface CustomerService {
-    List<Customer> getAllCustomer();
-    Customer getById(Long id);
+    List<Customer> findAll();
+    Customer find(long id);
     Customer save(Customer customer);
-    Customer updateByID(Long id, Customer updatedCustomer);
-    Customer delete(Long id);
+    Customer delete(long id);
 }
