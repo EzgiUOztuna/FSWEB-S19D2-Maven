@@ -6,22 +6,17 @@ import com.workintech.s18d4.entity.Account;
 import com.workintech.s18d4.entity.Customer;
 import com.workintech.s18d4.service.AccountService;
 import com.workintech.s18d4.service.CustomerService;
-import org.springframework.beans.factory.annotation.Autowired;
+import lombok.AllArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
+@AllArgsConstructor
 @RestController
-@RequestMapping("/accounts")
+@RequestMapping("/account")
 public class AccountController {
     private AccountService accountService;
     private CustomerService customerService;
-
-    @Autowired
-    public AccountController(AccountService accountService, CustomerService customerService) {
-        this.accountService = accountService;
-        this.customerService = customerService;
-    }
 
     @GetMapping
     public List<Account> findAll(){
@@ -69,7 +64,7 @@ public class AccountController {
 
     @DeleteMapping("/{id}")
     public AccountResponse remove(@PathVariable long id){
-        Account account = accountService.delete(id);
+        Account account = accountService.find(id);
         if(account == null){
             throw new RuntimeException("no account found");
         }
